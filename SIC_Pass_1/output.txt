@@ -6,7 +6,7 @@
 100C                  JEQ        ENDFIL    
 100F                  JSUB       WRREC     
 1012                  J          CLOOP     
-1015                  LDA        EOF       
+1015       ENDFIL     LDA        EOF       
 1018                  STA        BUFFER    
 101B                  LDA        THREE     
 101E                  STA        LENGTH    
