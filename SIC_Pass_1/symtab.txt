@@ -1,0 +1,16 @@
+1000       FIRST     
+1003       CLOOP     
+102A       EOF       
+102D       THREE     
+1030       ZERO      
+1033       RETADR    
+1036       LENGTH    
+1039       BUFFER    
+2039       RDREC     
+203F       RLOOP     
+2057       EXIT      
+205D       INPUT     
+205E       MAXLEN    
+2061       WRREC     
+2064       WLOOP     
+2079       OUTPUT    
