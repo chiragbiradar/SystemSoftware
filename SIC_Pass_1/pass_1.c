@@ -31,17 +31,6 @@ typedef struct optab OPTAB;
 
 OPTAB*optab_all = NULL;
 
-int count_spaces(char *s){
-    int i = 0;
-    int spaces = 0;
-    while(s[i]!='\0'){
-        i++;
-        if(s[i] == ' '){
-            spaces++;
-        }
-    }
-    return spaces;
-}
 
 void create_optab(){
     if(optab_all == NULL){
@@ -104,45 +93,47 @@ int add_locctr(OBJECT o){
 }
 
 OBJECT insert_tokens(char *s){
-    int spaces = 0;
-    int i = 0;
-    int sp1 = 0;
-    int sp2 = 0;
-    spaces = count_spaces(s);
     OBJECT obj;
     strcpy(obj.label," ");
     strcpy(obj.operand," ");
     strcpy(obj.opcode," ");
-    if(spaces == 1){
-        i = 0;
-        while(s[i]!=' '){
-            i++;
-        }
-        s[i] = '\0';
-        strcpy(obj.opcode,s);
-        strcpy(obj.operand,s+i+1);
+
+    char *token = NULL;
+    char s1[MAX_SIZE];
+    char s2[MAX_SIZE];
+    char s3[MAX_SIZE];
+
+    token = strtok(s, " ");
+    if(token == NULL)
+        strcpy(s1," ");
+    else
+        strcpy(s1,token);
+
+
+    token = strtok(NULL, " ");
+    if(token == NULL)
+        strcpy(s2," ");
+    else
+        strcpy(s2,token);
+
+
+    token = strtok(NULL, " ");
+    if(token == NULL)
+        strcpy(s3," ");
+    else
+        strcpy(s3,token);
+
+    if(!strcmp(s2," ") && !strcmp(s3," ")){
+        strcpy(obj.opcode,s1);
     }
-    else if(spaces >= 2){
-        i = 0;
-        while (s[i]!=' ')
-        {
-            i++;
-        }
-        s[i] = '\0';
-        sp1 = i;
-        i++;
-        while (s[i]!=' ')
-        {
-            i++;
-        }
-        s[i] = '\0';
-        sp2 = i;
-        strcpy(obj.label,s);
-        strcpy(obj.opcode,s+sp1+1);
-        strcpy(obj.operand,s+sp2+1);
+    else if(!strcmp(s3," ")){
+        strcpy(obj.opcode,s1);
+        strcpy(obj.operand,s2);
     }
-    else if (spaces == 0){
-        strcpy(obj.opcode,s);
+    else{
+        strcpy(obj.label,s1);
+        strcpy(obj.opcode,s2);
+        strcpy(obj.operand,s3);
     }
     return obj;
 }
@@ -158,7 +149,7 @@ int main(){
         exit(-1);
     }
 
-    fp = fopen("input.txt","r+"); 
+    fp = fopen("input2.txt","r+"); 
     if(fp == NULL){
         printf("Couldn't open the file.");
         exit(-1);
