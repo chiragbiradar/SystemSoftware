@@ -97,7 +97,6 @@ OBJECT insert_tokens(char *s){
     strcpy(obj.label," ");
     strcpy(obj.operand," ");
     strcpy(obj.opcode," ");
-
     char *token = NULL;
     char s1[MAX_SIZE];
     char s2[MAX_SIZE];
@@ -122,6 +121,13 @@ OBJECT insert_tokens(char *s){
         strcpy(s3," ");
     else
         strcpy(s3,token);
+    
+    token = strtok(NULL," ");
+    while(token != NULL){    
+        strcat(s3," ");
+        strcat(s3,token);
+        token = strtok(NULL," ");
+    }
 
     if(!strcmp(s2," ") && !strcmp(s3," ")){
         strcpy(obj.opcode,s1);
