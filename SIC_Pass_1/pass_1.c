@@ -148,6 +148,7 @@ int main(){
     FILE* fp;
     OBJECT temp_obj;
     OBJECT *objects;
+    int size_of_program = 0;
     char temp_string[MAX_SIZE];
     objects = (OBJECT*)malloc(sizeof(OBJECT)*MAX_OBJ_SIZE);
     if(objects == NULL){
@@ -198,7 +199,8 @@ int main(){
         }
     }
     fclose(fp2);
-
+    size_of_program = start - intial_address;
+    start = 0;
     FILE*fp3 = fopen("symtab.txt","w+");
     if(fp3 == NULL){
         printf("Error in opening file");
@@ -230,7 +232,7 @@ int main(){
         }
     }
     fclose(fp3);
-    printf("\n%d bytes is the size of the program.\n",(start-intial_address));
+    printf("\n%d bytes is the size of the program.\n",(size_of_program));
     printf("Pass 1 completed successfuly.");
     return 0;
 }
