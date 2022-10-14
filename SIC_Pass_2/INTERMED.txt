@@ -1,0 +1,10 @@
+COPY    START    2000
+2000    **    LDA    FIVE
+2003    **    STA    ALPHA
+2006    **    LDCH    CHARZ
+2009    **    STCH    C1
+2012    ALPHA    RESW    1
+2015    FIVE    WORD    5
+2018    CHARZ    BYTE    C'EOF'
+2019    C1    RESB    1
+2020    **    END    **
